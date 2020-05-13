@@ -1,74 +1,58 @@
-import sys
-input = sys.stdin.readline
+class RollingHash:
+    def __init__(self, S):
+        N = len(S)
+        self.N = N
+        self.base1 = 1007
+        self.mod1 = 10**9 + 7
+        self.hash1 = [0] * (N+1)
+        self.power1 = [1] * (N+1)
 
-N_ = input()
-S=input().strip()
+        for i, e in enumerate(S):
+            self.hash1[i+1] = (self.hash1[i] * self.base1 + ord(e)) % self.mod1
+            self.power1[i+1] = (self.power1[i] * self.base1) % self.mod1
+    
+    def get(self, lv, rv):
+        return (self.hash1[rv] - self.hash1[lv] * self.power1[rv-lv] % self.mod1) % self.mod1
 
-ANSP=[]
-
-f=0
-l=len(S)-1
-
-while f<l and S[f]==S[l]:
-    ANSP.append(S[f])
-
-    f+=1
-    l-=1
-
-if f==l or f==l+1:
+N = int(input())
+S = input()
+T = S[::-1]
+rh = RollingHash(S)
+rh2 = RollingHash(T)
+lens = 0
+for i in range(1, N//2+1):
+    if S[i-1] != T[i-1]:
+        break
+    else:
+        lens = i
+if lens * 2 == N:
     print(len(S))
     exit()
 
+lv = lens
+rv = N - lens - 1
+max_len = 1
+for i in range(rv-lv+1, 1, -1):
+    half = i//2
+    left_hash = rh.get(lv, lv+half)
+    right_hash = rh2.get(N-1-(lv+i-1), N-1-(lv+i-half) + 1)
+    if left_hash == right_hash:
+        max_len = i
+        break
 
-S2=S[f:l+1]
+max_len2 = 1
+for i in range(rv-lv+1, 1, -1):
+    half = i//2
+    left_hash = rh.get(rv-i+1, rv-i+1+half)
+    right_hash = rh2.get(N-1-rv,N-1-(rv-half+1)+1)
+    if left_hash == right_hash:
+        max_len2 = i
+        break
 
-SS2=[]
-for s in S2:
-    SS2.append(s)
-    SS2.append("$")
-SS2.pop()
+ans = ""
+if max_len >= max_len2:
+    ans = S[0:lens+max_len] + S[N-lens:N]
+else:
+    ans = S[0:lens] + S[N-lens-max_len2:N]
 
-
-LEN=len(SS2)
-i=0
-j=0
-R=[0]*LEN # 文字 i を中心とする最長の回文の半径
-
-while i<LEN:
-    while i-j>=0 and i+j<LEN and SS2[i-j]==SS2[i+j]:
-        j+=1
-    R[i]=j
-    
-    k=1
-    while i-k>=0 and i+k<LEN and k+R[i-k]<j:
-        R[i+k]=R[i-k]
-        k+=1
-
-    i+=k
-    j-=k
-
-
-MAX=0
-
-for i in range(LEN):
-    if i-R[i]+1==0 or i+R[i]==LEN:
-        if MAX<R[i]:
-            MAX=R[i]
-            MAXind=i
-
-S3=SS2[MAXind-MAX+1:MAXind+MAX]
-
-#print(S3)
-
-SS3=[]
-for s in S3:
-    if s!="$":
-        SS3.append(s)
-
-print(len(ANSP) + len(SS3) + len(ANSP))
-
-    
-            
-
-    
-        
+print(len(ans))
