@@ -6,6 +6,7 @@ int dp[5001][5001][2] = {};
 int a[5010];
 
 int calc(ll l, ll r, ll d){
+	cout << l << " " << r << " " << d << endl;
     int &res = dp[l][r][d];
     if(~res) return res;
     res = 1e9;
@@ -36,7 +37,7 @@ int calc(ll l, ll r, ll d){
         }
 
     }
-    return res;
+    return res; 
 
 }
 
