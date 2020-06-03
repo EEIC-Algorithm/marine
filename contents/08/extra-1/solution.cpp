@@ -42,16 +42,14 @@ int main(){
 
     ll ans = 1;
     for(auto &e: mp){
-        cout << e.first << " " << e.second << endl;
         ll r = e.second * (e.second+1) / 2;
         r %= MOD-1;
         ll ps = pos[e.first];
         ll v2 = mul_left[ps] * mul_right[sz-1-ps] % (MOD-1);
-        cout << mul_left[ps] << ps << mul_right[sz-1-ps] << r << sz << endl;
 
         ans *= power(e.first, v2 * r % (MOD-1));
         ans %= MOD;
-        cout << ans << endl;
     }
+
     cout << ans << endl;
 }
