@@ -10,7 +10,7 @@
 
 ### 制約
 - \\(1 \leq N,M \leq 3000\\)
-- \\(S,T \leq N\\)
+- \\(1 \leq S,T \leq N\\)
 - \\(1 \leq a_i,b_i \leq N\\) \\(\( 1\leq i \leq N\) \\)
 - \\(a_i \neq b_i\\) \\(\( 1\leq i \leq N\) \\)
 - 入力中のすべての値は整数である
