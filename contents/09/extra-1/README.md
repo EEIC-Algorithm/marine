@@ -10,6 +10,8 @@
 - \\(1 \leq N \leq 3000 \\)
 - \\(0 \leq M \leq 3000 \\)
 - \\(1 \leq S \leq N\\)
+- \\(1 \leq a_i,b_i \leq N\\) \\(\( 1\leq i \leq M\) \\)
+- \\(a_i \neq b_i\\) \\(\( 1\leq i \leq M\) \\)
 - 入力中のすべての値は整数である。
 
 ### 入力
