@@ -12,9 +12,10 @@
 
 ### 制約
 - \\(2 \leq N \leq 100\\)
-- \\(0 \leq M \leq N \times N / 2\\)
+- \\(0 \leq M \leq N \times (N-1) / 2\\)
 - \\(0 \leq a_i,b_i \leq N-1\\)
 - \\(a_i \neq b_i\\)
+- \\(i \neq j\\)のとき，\\((a_i,b_i) \neq (a_j,b_j)\\)
 - \\(0 \leq d_i \leq 10000\\)
 - \\(1 \leq Q \leq 10^5\\)
 - \\(0 \leq u,v \leq N-1\\)
