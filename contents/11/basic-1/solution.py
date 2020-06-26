@@ -1,32 +1,38 @@
-import heapq
-N, M, S = map(int, input().split())
-edges = [[]for _ in range(N)]
-inf = 10**18
-for _ in range(M):
-    u, v, d = map(int, input().split())
-    edges[u].append((v, d))
+used = [0] * 55
+tree = [[] for _ in range(55)]
 
 
-def dijkstra(s):
+def dfs(v,t,f):
+    if v == t:
+        return f
+    used[v] = True
+    for e in tree[v]:
+        if (not used[e[0]]) and (e[1] > 0):
+            d = dfs(e[0], t, min(f, e[1]))
+            if d > 0:
+                e[1] -= d
+                tree[e[0]][e[2]][1] += d
+                return d
+    return 0
 
-    dist = [inf]*N
-    dist[s] = 0
-    vs = []
-    heapq.heappush(vs, (0, s))
-    while len(vs):
-        res, v = heapq.heappop(vs)
-        if res > dist[v]:
-            continue
-        for nxt, cost in edges[v]:
-            if res+cost < dist[nxt]:
-                dist[nxt] = res+cost
-                heapq.heappush(vs, (dist[nxt], nxt))
-    return dist
+N,M = map(int, input().split())
+
+for i in range(M):
+    u,v,c = map(int, input().split())
+    u -= 1
+    v -= 1
+    tree[u].append([v,c,len(tree[v])])
+    tree[v].append([u,0,len(tree[u])-1])
+
+flow = 0
+
+while True:
+    for i in range(55):
+        used[i] = 0
+    f = dfs(0,N-1,1e9)
+    if f == 0:
+        break
+    flow += f
+print(flow)
 
 
-dist = dijkstra(S)
-for i in range(N):
-    if dist[i] == inf:
-        print("INF")
-    else:
-        print(dist[i])
