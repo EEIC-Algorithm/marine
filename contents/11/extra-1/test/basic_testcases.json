@@ -102,21 +102,21 @@
         "description": "[ランダムケース14]"
     },
     {
-        "input": "in/basic/10_random_15.in",
-        "output": "out/basic/10_random_15.out",
-        "description_en": "[Random Case]",
-        "description": "[ランダムケース15]"
+        "input": "in/basic/20_handmade_01.in",
+        "output": "out/basic/20_handmade_01.out",
+        "description_en": "[Corner Case]",
+        "description": "[コーナーケース1]"
     },
     {
-        "input": "in/basic/10_random_16.in",
-        "output": "out/basic/10_random_16.out",
-        "description_en": "[Random Case]",
-        "description": "[ランダムケース16]"
+        "input": "in/basic/20_handmade_02.in",
+        "output": "out/basic/20_handmade_02.out",
+        "description_en": "[Corner Case]",
+        "description": "[コーナーケース2]"
     },
     {
-        "input": "in/basic/10_random_17.in",
-        "output": "out/basic/10_random_17.out",
-        "description_en": "[Random Case]",
-        "description": "[ランダムケース17]"
+        "input": "in/basic/20_handmade_03.in",
+        "output": "out/basic/20_handmade_03.out",
+        "description_en": "[Corner Case]",
+        "description": "[コーナーケース3]"
     }
 ]
